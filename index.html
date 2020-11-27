@@ -74,7 +74,9 @@
         onMouseoverSquare: onMouseoverSquare,
         onSnapEnd: onSnapEnd
       }
+      
       board = Chessboard('myBoard', config)
+      $('#setStartBtn').on('click', board.start)
       
     </script>
   </body>
