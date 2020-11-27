@@ -13,19 +13,23 @@
     <button id="setRookCheckmateBtn">Rook Checkmate</button>
     <script>
       
-        var board = Chessboard('myBoard')
-        $('#setRuyLopezBtn').on('click', function () {
-          board.position('r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R')
-        })
-        $('#setStartBtn').on('click', board.start)
+      function onDragStart (source, piece, position, orientation) {
+        console.log('Drag started:')
+        console.log('Source: ' + source)
+        console.log('Piece: ' + piece)
+        console.log('Position: ' + Chessboard.objToFen(position))
+        console.log('Orientation: ' + orientation)
+        console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+      }
+      var config = {
+        draggable: true,
+        position: 'start',
+        onDragStart: onDragStart,
+        sparePieces: true
+      }
+      var board = Chessboard('myBoard', config)       
+      $('#setStartBtn').on('click', board.start)
       
-        $('#setRookCheckmateBtn').on('click', function () {
-          board.position({
-            a4: 'bK',
-            c4: 'wK',
-            a7: 'wR'
-          })
-        })  
     </script>
   </body>
 </html>
